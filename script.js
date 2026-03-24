@@ -10,10 +10,9 @@ hamEl.addEventListener('click',function(){nlEl.classList.toggle('open');});
 nlEl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nlEl.classList.remove('open');});});
 var ro=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('on');},i*60);ro.unobserve(e.target);}});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
-var barsEl=document.getElementById('bars');
-if(barsEl){var bo=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.brfill').forEach(function(b){var t=b.getAttribute('data-w');b.style.width='0';setTimeout(function(){b.style.width=t;},250);});bo.unobserve(e.target);}});},{threshold:0.4});bo.observe(barsEl);}
-var resumeBtn=document.getElementById('resumeBtn');
-if(resumeBtn){resumeBtn.addEventListener('click',function(e){e.preventDefault();if(confirm('View Resume? (Cancel to download)')){window.open('/resume','_blank');}else{var link=document.createElement('a');link.href='/api/resume/download';link.download='Uday_Dixit_Resume.pdf';document.body.appendChild(link);link.click();document.body.removeChild(link);}});}
+
+
+
 function sk(id){var el=document.getElementById(id);if(el){el.textContent='—';el.classList.add('skeleton');}}
 function unsk(id,val){var el=document.getElementById(id);if(el){el.classList.remove('skeleton');el.textContent=val;}}
 function loadGitHub(){
@@ -107,3 +106,18 @@ document.getElementById('cf').addEventListener('submit',function(e){
   if(EJS_SVC==='YOUR_SERVICE_ID'){window.location.href='mailto:dixitjiuday@gmail.com?subject='+encodeURIComponent(s||'Portfolio Contact')+'&body='+encodeURIComponent('Name: '+n+'\nEmail: '+em+'\n\n'+m);btn.textContent='Send Message \u2192';btn.disabled=false;return;}
   emailjs.send(EJS_SVC,EJS_TPL,{from_name:n,from_email:em,subject:s||'Portfolio Contact',message:m,to_email:'dixitjiuday@gmail.com'}).then(function(){st.textContent='\u2713 Message sent \u2014 I\'ll reply shortly.';st.className='fstat ok';document.getElementById('cf').reset();}).catch(function(){st.textContent='\u2717 Failed. Email: dixitjiuday@gmail.com';st.className='fstat err';}).finally(function(){btn.textContent='Send Message \u2192';btn.disabled=false;});
 });
+// Certificate Lightbox Modal
+(function(){
+  var modal=document.getElementById('cert-modal'),modalImg=document.getElementById('modal-img'),closeBtn=document.getElementById('cert-modal-close');
+  function openModal(src){modalImg.src=src;modal.classList.add('active');document.body.style.overflow='hidden';}
+  function closeModal(){modal.classList.remove('active');document.body.style.overflow='';setTimeout(function(){modalImg.src='';},350);}
+  document.querySelectorAll('.cc').forEach(function(card){
+    card.addEventListener('click',function(){
+      var img=card.querySelector('.cimg img');
+      if(img&&img.src){openModal(img.src);}
+    });
+  });
+  closeBtn.addEventListener('click',function(e){e.stopPropagation();closeModal();});
+  modal.addEventListener('click',function(e){if(e.target===modal){closeModal();}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('active')){closeModal();}});
+})();
