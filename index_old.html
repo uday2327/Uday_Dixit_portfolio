@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Uday Dixit — Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--white:#ffffff;--off:#f7f7f5;--off2:#f0efec;--line:#e8e6e1;--line2:#d8d6d0;--text:#000000;--muted:#555555;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+.cur{position:fixed;width:8px;height:8px;background:var(--text);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(0,0,0,.2);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .18s ease;}
+.cur-ring.big{width:50px;height:50px;border-color:rgba(0,0,0,.1);}
+#intro{position:fixed;inset:0;z-index:1000;background:var(--white);display:flex;align-items:center;justify-content:center;flex-direction:column;}
+#intro.hide{animation:iOut .9s cubic-bezier(.76,0,.24,1) forwards;}
+@keyframes iOut{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-100%);}}
+.intro-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3rem,10vw,8rem);letter-spacing:-.02em;color:var(--text);display:flex;overflow:hidden;}
+.il{display:inline-block;opacity:0;transform:translateY(80px);animation:liIn .7s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes liIn{to{opacity:1;transform:translateY(0);}}
+.intro-sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;opacity:0;margin-top:14px;animation:fUp .6s ease forwards;animation-delay:1.1s;}
+@keyframes fUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 6%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.93);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s;}
+nav.scrolled{border-color:var(--line);}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;letter-spacing:.02em;color:var(--text);text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--text);}
+.nav-cv{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.1em;padding:9px 20px;border:1px solid var(--text);color:var(--text);text-decoration:none;transition:all .22s;text-transform:uppercase;}
+.nav-cv:hover{background:var(--text);color:var(--white);}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:200;}
+.ham span{width:22px;height:1.5px;background:var(--text);display:block;}
+#home{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line);padding-top:88px;}
+.hl{padding:0 6%;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;border-right:1px solid var(--line);}
+.h-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:12px;}
+.h-eyebrow::before{content:'';width:26px;height:1px;background:var(--muted);flex-shrink:0;}
+.hname{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(5.5rem,9vw,11rem);line-height:.88;letter-spacing:-.04em;}
+.hname .fn{display:block;color:var(--text);}
+.hname .ln{display:block;font-style:italic;color:var(--muted);}
+.hr{background:var(--off);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:calc(100vh - 88px);}
+.photo-wrap{width:340px;height:340px;border-radius:50%;overflow:hidden;border:1px solid var(--line2);flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--off2);position:relative;}
+.hero-photo{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:grayscale(8%);}
+.photo-ph{width:100%;height:100%;background:var(--off2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:absolute;z-index:-1;}
+.ph-init{font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:var(--line2);}
+.ph-hint{font-family:'JetBrains Mono',monospace;font-size:.52rem;color:var(--muted);letter-spacing:.08em;text-align:center;padding:0 32px;line-height:1.9;display:flex;align-items:center;justify-content:center;}
+.hr-lbl{position:absolute;bottom:28px;left:0;right:0;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.18em;color:var(--muted);text-align:center;text-transform:uppercase;z-index:2;}
+section{border-bottom:1px solid var(--line);}
+.si{max-width:1200px;margin:0 auto;padding:96px 6%;}
+.sh{display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:start;margin-bottom:68px;}
+.sn{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;padding-top:7px;}
+.stitle{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.9rem,3.2vw,2.8rem);line-height:1.05;letter-spacing:-.01em;}
+.stitle em{font-style:italic;color:var(--muted);}
+.bd{display:inline-flex;align-items:center;gap:8px;background:var(--text);color:var(--white);font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:400;padding:13px 26px;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:opacity .2s;}
+.bd:hover{opacity:.78;}
+#about{background:var(--white);}
+.about-body{max-width:680px;margin:0 auto;text-align:center;}
+.about-body p{font-size:1rem;line-height:1.95;color:var(--muted);font-weight:300;margin-bottom:24px;}
+.about-body p strong{color:var(--text);font-weight:400;}
+.about-dl{margin-top:40px;display:flex;justify-content:center;}
+#projects{background:var(--off);}
+.pl{display:flex;flex-direction:column;gap:2px;}
+.pcard{display:grid;grid-template-columns:1fr 1fr;min-height:480px;background:var(--white);border:1px solid var(--line);overflow:hidden;transition:box-shadow .3s;}
+.pcard:hover{box-shadow:0 8px 40px rgba(0,0,0,.07);}
+.pcard:nth-child(even){direction:rtl;}
+.pcard:nth-child(even)>*{direction:ltr;}
+.pimg{position:relative;overflow:hidden;background:var(--off2);display:flex;align-items:center;justify-content:center;min-height:480px;}
+.pimg img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;transition:transform .6s ease;}
+.pcard:hover .pimg img{transform:scale(1.04);}
+.pimg-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px;background:var(--off2);}
+.pimg-ph-num{font-family:'Cormorant Garamond',serif;font-size:6rem;font-weight:300;color:var(--line);line-height:1;}
+.pimg-ph-hint{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-align:center;line-height:1.8;}
+.pcontent{padding:56px 52px;display:flex;flex-direction:column;justify-content:center;}
+.pperiod{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text);letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.pperiod::before{content:'';width:20px;height:1px;background:var(--text);flex-shrink:0;}
+.ptitle{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;color:var(--text);margin-bottom:20px;line-height:1.1;letter-spacing:-.01em;}
+.pdesc{font-size:1rem;line-height:1.85;color:var(--muted);font-weight:400;margin-bottom:28px;}
+.ptags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:32px;}
+.ptag{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);border:1px solid var(--line2);padding:5px 11px;letter-spacing:.06em;}
+.plink{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--text);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:3px;transition:border-color .2s;align-self:flex-start;}
+.plink:hover{border-color:var(--text);}
+.plink-arrow{transition:transform .2s;}
+.plink:hover .plink-arrow{transform:translateX(4px);}
+#skills{background:var(--white);}
+.sktbl{width:100%;border-collapse:collapse;}
+.sktbl tr{border-bottom:1px solid var(--line);}
+.sktbl tr:last-child{border-bottom:none;}
+.sktbl td{padding:26px 0;vertical-align:top;}
+.skcat{font-family:'JetBrains Mono',monospace;font-size:14px;color:#1a1a1a;letter-spacing:.14em;text-transform:uppercase;width:200px;padding-top:28px;font-weight:700;}
+.skitems{display:flex;flex-wrap:wrap;gap:9px;}
+.skitem{font-size:1rem;color:var(--text);font-weight:300;border:1px solid var(--line);padding:7px 16px;transition:all .2s;}
+.skitem:hover{background:var(--off);border-color:var(--line2);}
+.brrow{display:flex;align-items:center;gap:18px;margin-bottom:13px;}
+.brlbl{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);width:110px;letter-spacing:.05em;}
+.brtrack{flex:1;height:1px;background:var(--line);}
+.brfill{height:1px;background:var(--text);width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1);}
+.brpct{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);width:30px;text-align:right;}
+#certificates{background:var(--off);}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.cc{background:var(--white);overflow:hidden;transition:background .2s;}
+.cc:hover{background:var(--off2);}
+.cimg{height:190px;overflow:hidden;background:var(--off2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);}
+.cimg img{width:100%;height:100%;object-fit:cover;object-position:center center;filter:grayscale(10%);}
+.cph{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--line2);}
+.cinfo{padding:26px 22px;}
+.corg{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px;}
+.cname{font-size:.9rem;color:var(--text);line-height:1.4;margin-bottom:7px;}
+.cdate{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);}
+.cnote{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.06em;margin-top:28px;padding:10px 14px;border:1px dashed var(--line2);display:inline-block;line-height:1.6;}
+#achievements{background:var(--white);}
+.achl{display:flex;flex-direction:column;}
+.achr{display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:start;padding:44px 0;border-bottom:1px solid var(--line);}
+.achr:last-child{border-bottom:none;}
+.achidx{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.15em;}
+.achico{font-size:1.4rem;margin-bottom:6px;}
+.acht{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:300;color:var(--text);margin-bottom:10px;}
+.achd{font-size:1rem;line-height:1.8;color:var(--muted);font-weight:300;}
+#education{background:var(--off);}
+.edl{display:flex;flex-direction:column;}
+.edr{display:grid;grid-template-columns:200px 1fr;gap:60px;padding:44px 0;border-bottom:1px solid var(--line);align-items:start;}
+.edr:last-child{border-bottom:none;}
+.edper{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text);letter-spacing:.12em;text-transform:uppercase;padding-top:4px;}
+.eddeg{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--text);margin-bottom:5px;}
+.edsch{font-size:1rem;color:var(--muted);margin-bottom:12px;}
+.edbadges{display:flex;gap:7px;flex-wrap:wrap;}
+.edbadge{font-family:'JetBrains Mono',monospace;font-size:.65rem;border:1px solid var(--line2);padding:5px 11px;color:var(--text);}
+.edbadge.hi{background:var(--text);color:var(--white);border-color:var(--text);}
+.tblock{background:var(--white);border:1px solid var(--line);padding:38px;margin-top:44px;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:start;}
+.tlbl{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+.ttitle{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;margin-bottom:5px;}
+.torg{font-size:.8rem;color:var(--muted);margin-bottom:18px;}
+.tpts{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.tpts li{font-size:.8rem;color:var(--muted);padding-left:14px;position:relative;line-height:1.65;}
+.tpts li::before{content:'--';position:absolute;left:0;color:var(--line2);}
+.tyr{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--line);line-height:1;}
+#profiles{background:var(--white);}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.scard{background:var(--white);border:1px solid var(--line);padding:32px 28px;display:flex;flex-direction:column;gap:22px;transition:box-shadow .3s,border-color .3s;}
+.scard:hover{box-shadow:0 6px 32px rgba(0,0,0,.07);border-color:var(--line2);}
+.scard-head{display:flex;align-items:center;gap:14px;}
+.scard-icon{width:40px;height:40px;flex-shrink:0;background:var(--text);display:flex;align-items:center;justify-content:center;border-radius:2px;}
+.scard-icon svg{width:20px;height:20px;fill:var(--white);}
+.scard-icon-lc{background:#f59e0b;}
+.scard-icon-li{background:#0A66C2;}
+.scard-platform{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--text);line-height:1;}
+.scard-user{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.1em;margin-top:3px;}
+.scard-refresh{margin-left:auto;background:none;border:1px solid var(--line);width:30px;height:30px;cursor:pointer;font-size:.9rem;color:var(--muted);transition:all .2s;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.scard-refresh:hover{border-color:var(--text);color:var(--text);transform:rotate(180deg);}
+.scard-live-dot{margin-left:auto;display:flex;align-items:center;gap:6px;}
+.scard-avatar-row{display:flex;align-items:center;gap:16px;}
+.scard-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center center;flex-shrink:0;border:1px solid var(--line2);}
+.scard-avatar-ph{width:52px;height:52px;border-radius:50%;background:var(--off2);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--muted);flex-shrink:0;}
+.scard-bio{font-size:.8rem;color:var(--muted);line-height:1.6;font-weight:300;font-style:italic;}
+.scard-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+.sstat{padding:16px 10px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;}
+.sstat-n{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--text);line-height:1;}
+.sstat-l{font-family:'JetBrains Mono',monospace;font-size:.52rem;color:var(--muted);letter-spacing:.08em;margin-top:4px;text-transform:uppercase;}
+.scard-link{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--text);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:2px;transition:border-color .2s;align-self:flex-start;}
+.scard-link:hover{border-color:var(--text);}
+.lc-donut-wrap{display:flex;align-items:center;gap:24px;}
+.lc-donut{width:120px;height:120px;flex-shrink:0;transform:rotate(-90deg);}
+.lc-legend{display:flex;flex-direction:column;gap:10px;flex:1;}
+.lc-leg-item{display:flex;align-items:center;gap:8px;}
+.lc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.lc-leg-lbl{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.06em;flex:1;}
+.lc-leg-num{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--text);}
+.lc-extra-stats{grid-template-columns:1fr 1fr;}
+.li-headline{font-size:.82rem;color:var(--muted);line-height:1.7;font-weight:300;border-left:2px solid var(--line2);padding-left:14px;font-style:italic;}
+.adot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;display:inline-block;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.skeleton{background:linear-gradient(90deg,var(--off) 25%,var(--off2) 50%,var(--off) 75%);background-size:800px 100%;animation:shimmer 1.4s infinite;color:transparent !important;pointer-events:none;}
+#contact{background:var(--off);}
+.cgrd{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+.cl p{font-size:1rem;line-height:1.85;color:var(--muted);font-weight:300;max-width:360px;margin-bottom:36px;}
+.cir{padding:14px 0;border-bottom:1px solid var(--line);}
+.cilbl{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;}
+.cival{font-size:1rem;color:var(--text);}
+.cival a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--line2);transition:border-color .2s;}
+.cival a:hover{border-color:var(--text);}
+.socrow{display:flex;gap:8px;margin-top:24px;}
+.sbtn{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line2);padding:8px 14px;color:var(--text);text-decoration:none;transition:all .2s;}
+.sbtn:hover{background:var(--text);color:var(--white);border-color:var(--text);}
+.cform{display:flex;flex-direction:column;}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.frow2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.flbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;}
+.finput,.ftarea{background:var(--white);border:1px solid var(--line);color:var(--text);font-family:'Outfit',sans-serif;font-size:.86rem;font-weight:300;padding:12px 13px;outline:none;transition:border-color .2s;width:100%;}
+.finput:focus,.ftarea:focus{border-color:var(--text);}
+.finput::placeholder,.ftarea::placeholder{color:var(--muted);opacity:.6;}
+.ftarea{resize:vertical;min-height:130px;}
+.fsub{background:var(--text);color:var(--white);font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;padding:14px 30px;border:none;cursor:pointer;transition:opacity .2s;margin-top:4px;align-self:flex-start;}
+.fsub:hover{opacity:.75;}
+.fstat{font-family:'JetBrains Mono',monospace;font-size:.66rem;padding:11px 13px;margin-top:10px;display:none;letter-spacing:.05em;}
+.fstat.ok{display:block;border:1px solid #22c55e;color:#16a34a;background:#f0fdf4;}
+.fstat.err{display:block;border:1px solid #ef4444;color:#b91c1c;background:#fef2f2;}
+footer{padding:30px 6%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);flex-wrap:wrap;gap:10px;}
+.fc{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted);letter-spacing:.06em;}
+.ftop{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;transition:color .2s;}
+.ftop:hover{color:var(--text);}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .72s ease,transform .72s ease;}
+.reveal.on{opacity:1;transform:none;}
+@media(max-width:1024px){
+  #home{grid-template-columns:1fr;}
+  .hl{min-height:50vh;border-right:none;border-bottom:1px solid var(--line);justify-content:center;padding:60px 5%;}
+  .hr{min-height:60vh;}
+  .photo-wrap{width:260px;height:260px;}
+  .pcard{grid-template-columns:1fr;}
+  .pcard:nth-child(even){direction:ltr;}
+  .pimg{min-height:280px;}
+  .cgrd{grid-template-columns:1fr;gap:44px;}
+  .cgrid{grid-template-columns:1fr 1fr;}
+  .sh{grid-template-columns:120px 1fr;gap:28px;}
+  .stats-grid{grid-template-columns:1fr;}
+  .achr,.edr{grid-template-columns:1fr;gap:10px;}
+}
+@media(max-width:768px){
+  nav{padding:18px 5%;}
+  .nav-links{display:none;position:fixed;top:0;right:0;bottom:0;width:210px;background:var(--white);border-left:1px solid var(--line);flex-direction:column;padding:88px 28px;gap:22px;transform:translateX(100%);transition:transform .3s;}
+  .nav-links.open{display:flex;transform:translateX(0);}
+  .ham{display:flex;}
+  .nav-cv{display:none;}
+  .cgrid{grid-template-columns:1fr;}
+  .hname{font-size:3.8rem;}
+  .pcontent{padding:36px 28px;}
+  .ptitle{font-size:1.8rem;}
+  .frow2{grid-template-columns:1fr;}
+  .tblock{grid-template-columns:1fr;}
+  .tyr{display:none;}
+  .si{padding:66px 5%;}
+  .sh{grid-template-columns:1fr;gap:6px;margin-bottom:44px;}
+  .scard-stats{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="cr"></div>
+<div id="intro">
+  <div class="intro-name" id="iname"></div>
+  <div class="intro-sub">Full Stack &amp; Cloud Engineer</div>
+</div>
+<nav id="nav">
+  <a class="nav-brand" href="#home">Uday Dixit</a>
+  <ul class="nav-links" id="nl">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certificates">Certs</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#profiles">Stats</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cv" id="resumeBtn" href="#">Resume &#8595;</a>
+  <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</nav>
+<section id="home">
+  <div class="hl">
+    <div class="h-eyebrow reveal">Aspiring Cloud Engineer</div>
+    <h1 class="hname reveal">
+      <span class="fn">Uday</span>
+      <span class="ln">Dixit</span>
+    </h1>
+  </div>
+  <div class="hr">
+    <div class="photo-wrap">
+      <img class="hero-photo" src="images/Gemini_Generated_Image_amu9woamu9woamu9.png" alt="Prof      Hi, I'm Uday Dixit, a Computer Science undergraduate at Lovely Professional University. 
+      I'm passionate about building scalable systems — from designing user-friendly interfaces 
+      with React to managing cloud infrastructure on AWS.
+      
+      I believe in creating technology that's not just powerful but also secure and easy to use. 
+      When working on projects, I focus on clean code, reliable APIs, and automated deployment 
+      processes to reduce manual work and human error.
+      
+      Currently, I serve as Vice-President of Amazon Changemakers at LPU, where I mentor students 
+      and help bridge the gap between academic learning and real-world cloud computing practices.ile"/>
+    </div>
+    <div class="hr-lbl">Full Stack &middot; Cloud &middot; DevOps</div>
+  </div>
+</section>
+<section id="about">
+  <div class="si">
+    <div class="sh reveal" style="grid-template-columns:1fr;text-align:center;justify-items:center;">
+      <div class="sn">01 &mdash; About</div>
+      <h2 class="stitle">Who I <em>Am</em></h2>
+    </div>
+    <div class="about-body reveal">
+      <p>I am <strong>Uday Dixit</strong>, a Computer Science and Engineering undergraduate at Lovely Professional University, driven by a deep interest in building systems that are engineered to scale. My work sits at the convergence of <strong>full-stack product development</strong> and <strong>cloud-native infrastructure</strong>.</p>
+      <p>From React interfaces to Kubernetes-orchestrated microservices on AWS EKS, I approach every layer of the stack with the same rigour &mdash; security-first architecture, clean APIs, and automation at every stage of deployment.</p>
+      <p>Outside of engineering, I serve as <strong>Vice-President of the Changemakers of Amazon at LPU</strong>, mentoring peers and bridging academia with industry practice in cloud computing.</p>
+      <div class="about-dl">
+        <a class="bd" href="UdayCV-RT.pdf" download>Download Resume &#8595;</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="projects">
+  <div class="si">
+    <div class="sh reveal">
+      <div class="sn">02 &mdash; Projects</div>
+      <h2 class="stitle">Selected <em>Work</em></h2>
+    </div>
+    <div class="pl">
+      <div class="pcard reveal">
+        <div class="pimg">
+          <div class="pimg-ph"><div class="pimg-ph-num">01</div><div class="pimg-ph-hint">Add screenshot<br/>&lt;img src="project1.jpg"/&gt;</div></div>
+        </div>
+        <div class="pcontent">
+          <div class="pperiod">Oct 2025 &ndash; Feb 2026</div>
+          <div class="ptitle">Vendor &amp; Purchase Order Manager</div>
+          <p class="pdesc">A full-stack enterprise SaaS procurement platform built on the MERN stack, designed to manage vendors, purchase orders, invoices, contracts, and inventory through structured business workflows. Implemented JWT + 2FA (TOTP) authentication, RBAC, rate limiting, and audit logging for enterprise-grade security. Features multi-level approval workflows, real-time Socket.io notifications, spend analytics, vendor performance tracking, and anomaly detection dashboards.</p>
+          <div class="ptags"><span class="ptag">MongoDB</span><span class="ptag">Express.js</span><span class="ptag">React.js</span><span class="ptag">Node.js</span><span class="ptag">JWT &middot; 2FA</span><span class="ptag">RBAC</span><span class="ptag">Socket.io</span><span class="ptag">Docker</span><span class="ptag">CI/CD</span></div>
+          <a class="plink" href="https://github.com/uday2327" target="_blank">View on GitHub <span class="plink-arrow">&#8599;</span></a>
+        </div>
+      </div>
+      <div class="pcard reveal">
+        <div class="pimg">
+          <div class="pimg-ph"><div class="pimg-ph-num">02</div><div class="pimg-ph-hint">Add screenshot<br/>&lt;img src="project2.jpg"/&gt;</div></div>
+        </div>
+        <div class="pcontent">
+          <div class="pperiod">Dec 2025 &ndash; Present</div>
+          <div class="ptitle">Serverless Web Application Backend</div>
+          <p class="pdesc">A distributed microservice-based media processing system deployed on AWS EKS for scalable video transcoding and content delivery. Built asynchronous job execution using RabbitMQ with comprehensive retry mechanisms, dead letter queues, and failure handling. Implemented user authentication and metadata management using a dual-database architecture — PostgreSQL for relational data and MongoDB for documents — with secure JWT APIs and role-based access control. All services containerised with Docker, orchestrated with Kubernetes and Helm, featuring persistent AWS EBS storage, auto-scaling, and monitoring with Prometheus and Grafana for enterprise-grade reliability.</p>
+          <div class="ptags"><span class="ptag">AWS EKS</span><span class="ptag">Kubernetes</span><span class="ptag">Helm</span><span class="ptag">Docker</span><span class="ptag">RabbitMQ</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span><span class="ptag">MongoDB</span></div>
+          <a class="plink" href="https://github.com/uday2327" target="_blank">View on GitHub <span class="plink-arrow">&#8599;</span></a>
+        </div>
+      </div>
+      <div class="pcard reveal">
+        <div class="pimg">
+          <div class="pimg-ph"><div class="pimg-ph-num">03</div><div class="pimg-ph-hint">Add screenshot<br/>&lt;img src="project3.jpg"/&gt;</div></div>
+        </div>
+        <div class="pcontent">
+          <div class="pperiod">Jan 2026 &ndash; Feb 2026</div>
+          <div class="ptitle">Automated CI/CD Deployment Pipeline</div>
+          <p class="pdesc">A production-ready CI/CD pipeline that automatically deploys a static website to GitHub Pages on every push. Configured GitHub Actions workflows to trigger on key file changes, used Git for disciplined version control with feature branches, commits and merges, monitored workflow runs, resolved merge conflicts, and verified successful deployments &mdash; demonstrating end-to-end DevOps engineering practices.</p>
+          <div class="ptags"><span class="ptag">GitHub Actions</span><span class="ptag">Bash</span><span class="ptag">PowerShell</span><span class="ptag">Python</span><span class="ptag">Linux Utilities</span><span class="ptag">Git</span></div>
+          <a class="plink" href="https://github.com/uday2327" target="_blank">View on GitHub <span class="plink-arrow">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="skills">
+  <div class="si">
+    <div class="sh reveal">
+      <div class="sn">03 &mdash; Skills</div>
+      <h2 class="stitle">Technical <em>Arsenal</em></h2>
+    </div>
+    <table class="sktbl reveal">
+      <tr><td class="skcat">Languages</td><td><div class="skitems"><span class="skitem">JavaScript</span><span class="skitem">Python</span><span class="skitem">Java</span><span class="skitem">C++</span><span class="skitem">C</span></div></td></tr>
+      <tr><td class="skcat">Cloud &amp; DevOps</td><td><div class="skitems"><span class="skitem">AWS EC2</span><span class="skitem">AWS S3</span><span class="skitem">AWS IAM</span><span class="skitem">Docker</span><span class="skitem">Kubernetes</span><span class="skitem">Helm</span><span class="skitem">Microservices</span><span class="skitem">CI/CD</span></div></td></tr>
+      <tr><td class="skcat">Web Dev</td><td><div class="skitems"><span class="skitem">React.js</span><span class="skitem">Node.js</span><span class="skitem">Express.js</span><span class="skitem">Tailwind CSS</span><span class="skitem">Bootstrap</span><span class="skitem">HTML5</span><span class="skitem">CSS3</span></div></td></tr>
+      <tr><td class="skcat">Databases</td><td><div class="skitems"><span class="skitem">MongoDB</span><span class="skitem">MySQL</span><span class="skitem">PostgreSQL</span></div></td></tr>
+      <tr><td class="skcat">Tools</td><td><div class="skitems"><span class="skitem">Linux CLI</span><span class="skitem">Bash / Shell</span><span class="skitem">Git</span><span class="skitem">GitHub Actions</span><span class="skitem">RabbitMQ</span><span class="skitem">Socket.io</span></div></td></tr>
+      <tr><td class="skcat">CS Core</td><td><div id="bars"><div class="brrow"><span class="brlbl">DSA</span><div class="brtrack"><div class="brfill" data-w="88%"></div></div><span class="brpct">88%</span></div><div class="brrow"><span class="brlbl">OOP</span><div class="brtrack"><div class="brfill" data-w="85%"></div></div><span class="brpct">85%</span></div><div class="brrow"><span class="brlbl">DBMS</span><div class="brtrack"><div class="brfill" data-w="80%"></div></div><span class="brpct">80%</span></div><div class="brrow"><span class="brlbl">OS</span><div class="brtrack"><div class="brfill" data-w="78%"></div></div><span class="brpct">78%</span></div><div class="brrow"><span class="brlbl">Networks</span><div class="brtrack"><div class="brfill" data-w="75%"></div></div><span class="brpct">75%</span></div></div></td></tr>
+    </table>
+  </div>
+</section>
+<section id="certificates">
+  <div class="si">
+    <div class="sh reveal"><div class="sn">04 &mdash; Certificates</div><h2 class="stitle">Credentials &amp; <em>Licences</em></h2></div>
+    <div class="cgrid reveal">
+      <div class="cc"><div class="cimg"><span class="cph">OCI</span></div><div class="cinfo"><div class="corg">Oracle</div><div class="cname">Cloud Foundation Associate</div><div class="cdate">Feb 2026</div><a href="https://www.linkedin.com/in/uday-dixit11/details/certifications/" target="_blank" style="font-size:0.7rem;color:var(--muted);text-decoration:underline;margin-top:8px;display:inline-block;">View on LinkedIn</a></div></div>
+      <div class="cc"><div class="cimg"><span class="cph">IoT</span></div><div class="cinfo"><div class="corg">NPTEL</div><div class="cname">Internet of Things</div><div class="cdate">Oct 2025</div><a href="https://www.linkedin.com/in/uday-dixit11/details/certifications/" target="_blank" style="font-size:0.7rem;color:var(--muted);text-decoration:underline;margin-top:8px;display:inline-block;">View on LinkedIn</a></div></div>
+      <div class="cc"><div class="cimg"><span class="cph">OS</span></div><div class="cinfo"><div class="corg">Infosys</div><div class="cname">Introduction to Hardware and Operating Systems</div><div class="cdate">Jan 2024</div><a href="https://www.linkedin.com/in/uday-dixit11/details/certifications/" target="_blank" style="font-size:0.7rem;color:var(--muted);text-decoration:underline;margin-top:8px;display:inline-block;">View on LinkedIn</a></div></div>
+      <div class="cc"><div class="cimg"><span class="cph">AWS</span></div><div class="cinfo"><div class="corg">Amazon Web Services</div><div class="cname">Cloud Computing Fundamentals</div><div class="cdate">Apr 2025</div><a href="https://www.linkedin.com/in/uday-dixit11/details/certifications/" target="_blank" style="font-size:0.7rem;color:var(--muted);text-decoration:underline;margin-top:8px;display:inline-block;">View on LinkedIn</a></div></div>
+      <div class="cc"><div class="cimg"><span class="cph">DSA</span></div><div class="cinfo"><div class="corg">GeeksForGeeks</div><div class="cname">Data Structures & Algorithms</div><div class="cdate">Mar 2025</div><a href="https://www.linkedin.com/in/uday-dixit11/details/certifications/" target="_blank" style="font-size:0.7rem;color:var(--muted);text-decoration:underline;margin-top:8px;display:inline-block;">View on LinkedIn</a></div></div>
+      <div class="cc"><div class="cimg"><span class="cph">MERN</span></div><div class="cinfo"><div class="corg">Udemy</div><div class="cname">Full Stack MERN Development</div><div class="cdate">Dec 2024</div><a href="https://www.linkedin.com/in/uday-dixit11/details/certifications/" target="_blank" style="font-size:0.7rem;color:var(--muted);text-decoration:underline;margin-top:8px;display:inline-block;">View on LinkedIn</a></div></div>
+    </div>
+  </div>
+</section>
+<section id="achievements">
+  <div class="si">
+    <div class="sh reveal"><div class="sn">05 &mdash; Achievements</div><h2 class="stitle">Key <em>Highlights</em></h2></div>
+    <div class="achl">
+      <div class="achr reveal"><div><div class="achico">&#9670;</div><div class="achidx">01</div></div><div><div class="acht">300+ Competitive Programming Problems</div><p class="achd">Consistent practitioner of algorithmic problem-solving with 300+ problems across LeetCode and GeeksForGeeks, backed by a 4-star rating on HackerRank. Strong command of data structures, graph algorithms, and dynamic programming applied across competitive programming contexts.</p></div></div>
+      <div class="achr reveal"><div><div class="achico">&#9670;</div><div class="achidx">02</div></div><div><div class="acht">Vice-President, Changemakers of Amazon &mdash; LPU</div><p class="achd">Elected VP of LPU's foremost cloud technology community since October 2025. Leading AWS-focused workshops, mentoring students in cloud fundamentals and DevOps, and organising industry-aligned events that bridge academic learning with professional engineering standards.</p></div></div>
+      <div class="achr reveal"><div><div class="achico">&#9670;</div><div class="achidx">03</div></div><div><div class="acht">Full Stack Web Development Expertise</div><p class="achd">Developed and deployed 15+ production-ready applications using MERN stack, Python Flask, and cloud platforms. Experience with responsive design, API development, database management, and modern deployment practices across diverse project scales.</p></div></div>
+      <div class="achr reveal"><div><div class="achico">&#9670;</div><div class="achidx">04</div></div><div><div class="acht">Open Source Contributions</div><p class="achd">Active contributor to multiple GitHub repositories with 50+ merged pull requests. Collaborated on documentation improvements, bug fixes, and feature enhancements across various technology stacks and community projects.</p></div></div>
+      <div class="achr reveal"><div><div class="achico">&#9670;</div><div class="achidx">05</div></div><div><div class="acht">Cloud Computing Certifications</div><p class="achd">Earned 6+ industry-recognized certifications in cloud technologies including AWS, Oracle Cloud, and Azure fundamentals. Demonstrated practical knowledge through hands-on projects and real-world cloud architecture implementations.</p></div></div>
+      <div class="achr reveal"><div><div class="achico">&#9670;</div><div class="achidx">06</div></div><div><div class="acht">Technical Leadership & Mentoring</div><p class="achd">Mentored 25+ junior developers through coding bootcamps and peer programming sessions. Led technical workshops on modern web development, cloud computing, and best practices for scalable software engineering.</p></div></div>
+    </div>
+  </div>
+</section>
+<section id="education">
+  <div class="si">
+    <div class="sh reveal"><div class="sn">06 &mdash; Education</div><h2 class="stitle">Academic <em>Journey</em></h2></div>
+    <div class="edl">
+      <div class="edr reveal"><div class="edper">Aug 2023 &ndash; Present</div><div><div class="eddeg">B.Tech &mdash; Computer Science &amp; Engineering</div><div class="edsch">Lovely Professional University, Phagwara, Punjab</div><div class="edbadges"><span class="edbadge hi">CGPA 7.56</span><span class="edbadge">CSE Core</span><span class="edbadge">VP &mdash; Amazon Club</span></div></div></div>
+      <div class="edr reveal"><div class="edper">Jun 2021 &ndash; Apr 2022</div><div><div class="eddeg">Intermediate &mdash; Class XII</div><div class="edsch">Noble Public School, Sagar, Madhya Pradesh</div><div class="edbadges"><span class="edbadge hi">74.6%</span><span class="edbadge">PCM + CS</span></div></div></div>
+      <div class="edr reveal"><div class="edper">Jun 2019 &ndash; Apr 2020</div><div><div class="eddeg">Matriculation &mdash; Class X</div><div class="edsch">Noble Public School, Sagar, Madhya Pradesh</div><div class="edbadges"><span class="edbadge hi">84%</span><span class="edbadge">All Subjects</span></div></div></div>
+    </div>
+    <div class="tblock reveal">
+      <div><div class="tlbl">Training &middot; Feb&ndash;Apr 2025</div><div class="ttitle">AWS Cloud Computing Training</div><div class="torg">Amazon Web Services &mdash; Official Programme</div><ul class="tpts"><li>Hands-on exposure to core AWS services: EC2, S3, IAM, RDS, Lambda, VPC, and CloudWatch.</li><li>Designed scalable cloud solutions following the AWS Well-Architected Framework.</li><li>Applied security best practices: IAM policies, encryption, and infrastructure automation.</li></ul></div>
+      <div class="tyr">AWS</div>
+    </div>
+  </div>
+</section>
+<section id="profiles">
+  <div class="si">
+    <div class="sh reveal"><div class="sn">07 &mdash; Live Stats</div><h2 class="stitle">Developer <em>Profiles</em></h2></div>
+    <div class="stats-grid reveal">
+      <div class="scard" id="gh-card">
+        <div class="scard-head">
+          <div class="scard-icon"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></div>
+          <div><div class="scard-platform">GitHub</div><div class="scard-user">@uday2327</div></div>
+          <button class="scard-refresh" onclick="loadGitHub()" title="Refresh">&#8635;</button>
+        </div>
+        <div class="scard-avatar-row" id="gh-avatar-row">
+          <div class="scard-avatar-ph" id="gh-avatar-ph">UD</div>
+          <div class="scard-bio" id="gh-bio">Loading...</div>
+        </div>
+        <div class="scard-stats">
+          <div class="sstat"><div class="sstat-n" id="gh-repos">&#8212;</div><div class="sstat-l">Repos</div></div>
+          <div class="sstat"><div class="sstat-n" id="gh-followers">&#8212;</div><div class="sstat-l">Followers</div></div>
+          <div class="sstat"><div class="sstat-n" id="gh-following">&#8212;</div><div class="sstat-l">Following</div></div>
+          <div class="sstat"><div class="sstat-n" id="gh-gists">&#8212;</div><div class="sstat-l">Gists</div></div>
+        </div>
+        <a class="scard-link" href="https://github.com/uday2327" target="_blank">View Profile &#8599;</a>
+      </div>
+      <div class="scard" id="lc-card">
+        <div class="scard-head">
+          <div class="scard-icon scard-icon-lc"><svg viewBox="0 0 24 24"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg></div>
+          <div><div class="scard-platform">LeetCode</div><div class="scard-user">@uday__1</div></div>
+          <button class="scard-refresh" onclick="loadLeetCode()" title="Refresh">&#8635;</button>
+        </div>
+        <div class="lc-donut-wrap">
+          <svg class="lc-donut" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="48" fill="none" stroke="var(--line)" stroke-width="8"/>
+            <circle id="lc-arc-easy" cx="60" cy="60" r="48" fill="none" stroke="#22c55e" stroke-width="8" stroke-dasharray="0 302" stroke-linecap="round"/>
+            <circle id="lc-arc-med" cx="60" cy="60" r="48" fill="none" stroke="#f59e0b" stroke-width="8" stroke-dasharray="0 302" stroke-linecap="round"/>
+            <circle id="lc-arc-hard" cx="60" cy="60" r="48" fill="none" stroke="#ef4444" stroke-width="8" stroke-dasharray="0 302" stroke-linecap="round"/>
+            <text x="60" y="56" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="22" font-weight="300" fill="var(--text)" id="lc-tot">&#8212;</text>
+            <text x="60" y="70" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="var(--muted)" letter-spacing="1">SOLVED</text>
+          </svg>
+          <div class="lc-legend">
+            <div class="lc-leg-item"><span class="lc-dot" style="background:#22c55e"></span><span class="lc-leg-lbl">Easy</span><span class="lc-leg-num" id="lc-easy">&#8212;</span></div>
+            <div class="lc-leg-item"><span class="lc-dot" style="background:#f59e0b"></span><span class="lc-leg-lbl">Medium</span><span class="lc-leg-num" id="lc-med">&#8212;</span></div>
+            <div class="lc-leg-item"><span class="lc-dot" style="background:#ef4444"></span><span class="lc-leg-lbl">Hard</span><span class="lc-leg-num" id="lc-hard">&#8212;</span></div>
+          </div>
+        </div>
+        <div class="scard-stats lc-extra-stats">
+          <div class="sstat"><div class="sstat-n" id="lc-rank">&#8212;</div><div class="sstat-l">Global Rank</div></div>
+          <div class="sstat"><div class="sstat-n">300+</div><div class="sstat-l">Total Solved</div></div>
+        </div>
+        <a class="scard-link" href="https://leetcode.com/u/uday__1" target="_blank">View Profile &#8599;</a>
+      </div>
+      <div class="scard">
+        <div class="scard-head">
+          <div class="scard-icon scard-icon-li"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          <div><div class="scard-platform">LinkedIn</div><div class="scard-user">@uday-dixit11</div></div>
+          <div class="scard-live-dot"><span class="adot"></span><span style="font-family:'JetBrains Mono',monospace;font-size:.58rem;color:#22c55e;letter-spacing:.1em;">ACTIVE</span></div>
+        </div>
+        <div class="li-headline">Full Stack &amp; Cloud Engineer &nbsp;|&nbsp; MERN &middot; AWS &middot; Kubernetes &nbsp;|&nbsp; VP @ Changemakers of Amazon, LPU</div>
+        <div class="scard-stats">
+          <div class="sstat"><div class="sstat-n">500+</div><div class="sstat-l">Connections</div></div>
+          <div class="sstat"><div class="sstat-n">B.Tech</div><div class="sstat-l">CSE @ LPU</div></div>
+          <div class="sstat"><div class="sstat-n">VP</div><div class="sstat-l">Amazon Club</div></div>
+          <div class="sstat"><div class="sstat-n">Open</div><div class="sstat-l">To Work</div></div>
+        </div>
+        <a class="scard-link" href="https://linkedin.com/in/uday-dixit11" target="_blank">View Profile &#8599;</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="si">
+    <div class="sh reveal"><div class="sn">08 &mdash; Contact</div><h2 class="stitle">Let's <em>Connect</em></h2></div>
+    <div class="cgrd">
+      <div class="cl reveal">
+        <p>Whether you have a role, a project, or simply want to talk engineering &mdash; I am always open to the right conversation.</p>
+        <div class="cir"><div class="cilbl">Email</div><div class="cival"><a href="mailto:dixitjiuday@gmail.com">dixitjiuday@gmail.com</a></div></div>
+        <div class="cir"><div class="cilbl">Phone</div><div class="cival"><a href="tel:+916260529908">+91 6260529908</a></div></div>
+        <div class="cir"><div class="cilbl">Location</div><div class="cival">Phagwara, Punjab, India</div></div>
+        <div class="socrow">
+          <a class="sbtn" href="https://linkedin.com/in/uday-dixit11" target="_blank">LinkedIn &#8599;</a>
+          <a class="sbtn" href="https://github.com/uday2327" target="_blank">GitHub &#8599;</a>
+          <a class="sbtn" href="mailto:dixitjiuday@gmail.com">Email &#8599;</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <form class="cform" id="cf">
+          <div class="frow2">
+            <div class="fg"><label class="flbl">Name</label><input class="finput" type="text" id="fn" placeholder="Your name" required/></div>
+            <div class="fg"><label class="flbl">Email</label><input class="finput" type="email" id="fe" placeholder="your@email.com" required/></div>
+          </div>
+          <div class="fg"><label class="flbl">Subject</label><input class="finput" type="text" id="fs" placeholder="What's this about?"/></div>
+          <div class="fg"><label class="flbl">Message</label><textarea class="ftarea" id="fm" placeholder="Tell me about the opportunity..." required></textarea></div>
+          <button class="fsub" type="submit" id="fb">Send Message &#8594;</button>
+          <div class="fstat" id="fst"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="fc">&#169; 2026 Uday Dixit &mdash; Engineered with precision</div>
+  <a class="ftop" href="#home">&#8593; Back to top</a>
+</footer>
+<script>
+var curEl=document.getElementById('cur'),crEl=document.getElementById('cr');
+document.addEventListener('mousemove',function(e){curEl.style.left=e.clientX+'px';curEl.style.top=e.clientY+'px';crEl.style.left=e.clientX+'px';crEl.style.top=e.clientY+'px';});
+document.querySelectorAll('a,button,.skitem,.cc,.pcard,.achr,.scard').forEach(function(el){el.addEventListener('mouseenter',function(){crEl.classList.add('big');});el.addEventListener('mouseleave',function(){crEl.classList.remove('big');});});
+var nm='UDAY DIXIT',inEl=document.getElementById('iname');
+nm.split('').forEach(function(ch,i){var s=document.createElement('span');s.className='il';s.textContent=(ch===' ')?'\u00a0':ch;s.style.animationDelay=(0.06*i+0.18)+'s';inEl.appendChild(s);});
+setTimeout(function(){document.getElementById('intro').classList.add('hide');setTimeout(function(){document.getElementById('intro').style.display='none';},900);},2700);
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);var cur='';document.querySelectorAll('section[id]').forEach(function(s){if(window.scrollY>=s.offsetTop-200)cur=s.id;});document.querySelectorAll('#nl a').forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});});
+var hamEl=document.getElementById('ham'),nlEl=document.getElementById('nl');
+hamEl.addEventListener('click',function(){nlEl.classList.toggle('open');});
+nlEl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nlEl.classList.remove('open');});});
+var ro=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('on');},i*60);ro.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+var barsEl=document.getElementById('bars');
+if(barsEl){var bo=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.brfill').forEach(function(b){var t=b.getAttribute('data-w');b.style.width='0';setTimeout(function(){b.style.width=t;},250);});bo.unobserve(e.target);}});},{threshold:0.4});bo.observe(barsEl);}
+var resumeBtn=document.getElementById('resumeBtn');
+if(resumeBtn){resumeBtn.addEventListener('click',function(e){e.preventDefault();if(confirm('View Resume? (Cancel to download)')){window.open('/resume','_blank');}else{var link=document.createElement('a');link.href='/api/resume/download';link.download='Uday_Dixit_Resume.pdf';document.body.appendChild(link);link.click();document.body.removeChild(link);}});}
+function sk(id){var el=document.getElementById(id);if(el){el.textContent='—';el.classList.add('skeleton');}}
+function unsk(id,val){var el=document.getElementById(id);if(el){el.classList.remove('skeleton');el.textContent=val;}}
+function loadGitHub(){
+  sk('gh-repos');sk('gh-followers');sk('gh-following');sk('gh-gists');
+  var bio=document.getElementById('gh-bio');bio.textContent='Loading...';bio.classList.add('skeleton');
+  fetch('https://api.github.com/users/uday2327')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      bio.classList.remove('skeleton');
+      unsk('gh-repos',d.public_repos||0);
+      unsk('gh-followers',d.followers||0);
+      unsk('gh-following',d.following||0);
+      unsk('gh-gists',d.public_gists||0);
+      bio.textContent=d.bio||'Full Stack & Cloud Engineer | MERN · AWS · Kubernetes';
+      if(d.avatar_url){var row=document.getElementById('gh-avatar-row');var ph=document.getElementById('gh-avatar-ph');if(ph){var img=document.createElement('img');img.className='scard-avatar';img.src=d.avatar_url;img.alt='GitHub';row.replaceChild(img,ph);}}
+    })
+    .catch(function(){
+      bio.classList.remove('skeleton');
+      unsk('gh-repos','10+');unsk('gh-followers','—');unsk('gh-following','—');unsk('gh-gists','—');
+      bio.textContent='Full Stack & Cloud Engineer | MERN · AWS · Kubernetes';
+    });
+}
+function animateDonut(e,m,h,tot){
+  var C=2*Math.PI*48,ep=tot>0?e/tot:0,mp=tot>0?m/tot:0,hp=tot>0?h/tot:0;
+  var el=C*ep,ml=C*mp,hl=C*hp;
+  var aE=document.getElementById('lc-arc-easy'),aM=document.getElementById('lc-arc-med'),aH=document.getElementById('lc-arc-hard');
+  aE.style.strokeDasharray='0 '+C;aM.style.strokeDasharray='0 '+C;aH.style.strokeDasharray='0 '+C;
+  aE.style.strokeDashoffset=0;aM.style.strokeDashoffset=(-el);aH.style.strokeDashoffset=(-(el+ml));
+  setTimeout(function(){
+    aE.style.transition='stroke-dasharray 1s ease';aM.style.transition='stroke-dasharray 1s ease .2s';aH.style.transition='stroke-dasharray 1s ease .4s';
+    aE.style.strokeDasharray=el+' '+(C-el);aM.style.strokeDasharray=ml+' '+(C-ml);aH.style.strokeDasharray=hl+' '+(C-hl);
+  },300);
+}
+function loadLeetCode(){
+  sk('lc-easy');sk('lc-med');sk('lc-hard');sk('lc-rank');
+  var tot=document.getElementById('lc-tot');tot.textContent='—';tot.classList.add('skeleton');
+  fetch('https://leetcode.com/graphql', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      query: `
+        query {
+          userProfileUserQuestionProgressV2(userSlug: "uday__1") {
+            numAcceptedQuestions {
+              difficulty
+              count
+            }
+          }
+          userContestRanking(username: "uday__1") {
+            globalRanking
+          }
+        }
+      `
+    })
+  })
+    .then(function(r){return r.json();})
+    .then(function(d){
+      tot.classList.remove('skeleton');
+      var progress = d.data.userProfileUserQuestionProgressV2;
+      var ranking = d.data.userContestRanking;
+      var easy = 0, med = 0, hard = 0, total = 0;
+      if (progress && progress.numAcceptedQuestions) {
+        progress.numAcceptedQuestions.forEach(function(q) {
+          if (q.difficulty === 'EASY') easy = q.count;
+          else if (q.difficulty === 'MEDIUM') med = q.count;
+          else if (q.difficulty === 'HARD') hard = q.count;
+          total += q.count;
+        });
+      }
+      unsk('lc-easy', easy);
+      unsk('lc-med', med);
+      unsk('lc-hard', hard);
+      unsk('lc-rank', ranking && ranking.globalRanking ? '#' + ranking.globalRanking : '—');
+      tot.textContent = total;
+      animateDonut(easy, med, hard, total);
+    })
+    .catch(function(){
+      tot.classList.remove('skeleton');
+      unsk('lc-easy',120);unsk('lc-med',130);unsk('lc-hard',50);unsk('lc-rank','—');
+      tot.textContent='300+';animateDonut(120,130,50,300);
+    });
+}
+loadGitHub();loadLeetCode();
+var EJS_SVC='YOUR_SERVICE_ID',EJS_TPL='YOUR_TEMPLATE_ID',EJS_KEY='YOUR_PUBLIC_KEY';
+var ejsScript=document.createElement('script');ejsScript.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';ejsScript.onload=function(){if(EJS_KEY!=='YOUR_PUBLIC_KEY')emailjs.init(EJS_KEY);};document.head.appendChild(ejsScript);
+document.getElementById('cf').addEventListener('submit',function(e){
+  e.preventDefault();
+  var btn=document.getElementById('fb'),st=document.getElementById('fst');
+  var n=document.getElementById('fn').value.trim(),em=document.getElementById('fe').value.trim(),s=document.getElementById('fs').value.trim(),m=document.getElementById('fm').value.trim();
+  btn.textContent='Sending\u2026';btn.disabled=true;st.className='fstat';st.style.display='none';
+  if(EJS_SVC==='YOUR_SERVICE_ID'){window.location.href='mailto:dixitjiuday@gmail.com?subject='+encodeURIComponent(s||'Portfolio Contact')+'&body='+encodeURIComponent('Name: '+n+'\nEmail: '+em+'\n\n'+m);btn.textContent='Send Message \u2192';btn.disabled=false;return;}
+  emailjs.send(EJS_SVC,EJS_TPL,{from_name:n,from_email:em,subject:s||'Portfolio Contact',message:m,to_email:'dixitjiuday@gmail.com'}).then(function(){st.textContent='\u2713 Message sent \u2014 I\'ll reply shortly.';st.className='fstat ok';document.getElementById('cf').reset();}).catch(function(){st.textContent='\u2717 Failed. Email: dixitjiuday@gmail.com';st.className='fstat err';}).finally(function(){btn.textContent='Send Message \u2192';btn.disabled=false;});
+});
+</script>
+</body>
+</html>
