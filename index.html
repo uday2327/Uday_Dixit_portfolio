@@ -253,7 +253,7 @@ footer{padding:30px 6%;display:flex;justify-content:space-between;align-items:ce
     <li><a href="#profiles">Stats</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a class="nav-cv" href="UdayCV-RT.pdf" download>Resume &#8595;</a>
+  <a class="nav-cv" id="resumeBtn" href="#">Resume &#8595;</a>
   <div class="ham" id="ham"><span></span><span></span><span></span></div>
 </nav>
 <section id="home">
@@ -505,6 +505,8 @@ var ro=new IntersectionObserver(function(entries){entries.forEach(function(e,i){
 document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
 var barsEl=document.getElementById('bars');
 if(barsEl){var bo=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.brfill').forEach(function(b){var t=b.getAttribute('data-w');b.style.width='0';setTimeout(function(){b.style.width=t;},250);});bo.unobserve(e.target);}});},{threshold:0.4});bo.observe(barsEl);}
+var resumeBtn=document.getElementById('resumeBtn');
+if(resumeBtn){resumeBtn.addEventListener('click',function(e){e.preventDefault();if(confirm('View Resume? (Cancel to download)')){window.open('/resume','_blank');}else{var link=document.createElement('a');link.href='/api/resume/download';link.download='Uday_Dixit_Resume.pdf';document.body.appendChild(link);link.click();document.body.removeChild(link);}});}
 function sk(id){var el=document.getElementById(id);if(el){el.textContent='—';el.classList.add('skeleton');}}
 function unsk(id,val){var el=document.getElementById(id);if(el){el.classList.remove('skeleton');el.textContent=val;}}
 function loadGitHub(){
