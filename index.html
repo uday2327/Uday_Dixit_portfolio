@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Uday Dixit — Engineer</title>
+  <title>Uday Dixit &mdash; Engineer</title>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>emailjs.init("v70whhCXeceKD1CFj")</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -61,8 +63,7 @@
   <section id="about">
     <div class="si">
       <div class="sh reveal" style="grid-template-columns:1fr;text-align:center;justify-items:center;">
-        <div class="sn">01 &mdash; About</div>
-        <h2 class="stitle">Who I <em>Am</em></h2>
+        <div class="sn">About</div>
       </div>
       <div class="about-body reveal">
         <p>I am <strong>Uday Dixit</strong>, a Computer Science and Engineering undergraduate at Lovely Professional
@@ -80,9 +81,8 @@
   </section>
   <section id="projects">
     <div class="si">
-      <div class="sh reveal">
-        <div class="sn">02 &mdash; Projects</div>
-        <h2 class="stitle">Selected <em>Work</em></h2>
+      <div class="sh sh-center reveal">
+        <div class="sn">Projects</div>
       </div>
       <div class="pl">
         <div class="pcard reveal">
@@ -159,26 +159,44 @@
   </section>
   <section id="training">
     <div class="si">
-      <div class="tblock reveal">
-        <div>
-          <div class="tlbl">Training &middot; Feb&ndash;Apr 2025</div>
-          <div class="ttitle">AWS Cloud Computing Training</div>
-          <div class="torg">Amazon Web Services &mdash; Official Programme</div>
-          <ul class="tpts">
-            <li>Hands-on exposure to core AWS services: EC2, S3, IAM, RDS, Lambda, VPC, and CloudWatch.</li>
-            <li>Designed scalable cloud solutions following the AWS Well-Architected Framework.</li>
-            <li>Applied security best practices: IAM policies, encryption, and infrastructure automation.</li>
+      <div class="sh sh-center reveal">
+        <div class="sn">Training</div>
+      </div>
+      <div class="train-grid reveal">
+        <div class="train-card">
+          <div class="train-date">Feb &ndash; Apr 2025</div>
+          <div class="train-title">AWS Cloud Computing Training</div>
+          <div class="train-sub">Amazon Web Services &mdash; Official Programme</div>
+          <ul class="train-list">
+            <li><strong>Core Services</strong> &mdash; Built and configured EC2, S3, IAM, RDS, Lambda, VPC, CloudWatch &amp; CloudFront on live AWS environment</li>
+            <li><strong>Architecture</strong> &mdash; Designed scalable cloud architectures using AWS Well-Architected Framework</li>
+            <li><strong>Security</strong> &mdash; Implemented IAM policies, encryption &amp; security best practices hands-on</li>
+            <li><strong>Automation</strong> &mdash; Automated infrastructure provisioning using IaaC tools and scripts</li>
+            <li><strong>Migration</strong> &mdash; Executed cloud migration strategies with RDS database migration</li>
+            <li><strong>Databases</strong> &mdash; Connected and managed relational &amp; non-relational databases on AWS</li>
+            <li><strong>Monitoring</strong> &mdash; Monitored systems using CloudWatch logging, metrics &amp; alerting</li>
           </ul>
         </div>
-        <div class="tyr">AWS</div>
+        <div class="train-card">
+          <div class="train-date">Summer 2024</div>
+          <div class="train-title">DSA Summer Training</div>
+          <div class="train-sub">C++ &mdash; Data Structures &amp; Algorithms</div>
+          <ul class="train-list">
+            <li><strong>Language</strong> &mdash; Coded all core DSA concepts hands-on in C++ with STL</li>
+            <li><strong>Foundation</strong> &mdash; Analysed time &amp; space complexity using Big-O for every problem</li>
+            <li><strong>Linear DS</strong> &mdash; Implemented Arrays, Linked Lists, Stacks, Queues &amp; Strings from scratch</li>
+            <li><strong>Non-Linear DS</strong> &mdash; Built Tree, Graph, Heap &amp; Hashing structures hands-on</li>
+            <li><strong>Algorithms</strong> &mdash; Applied Sorting, Searching, Recursion, Backtracking &amp; Greedy algorithms</li>
+            <li><strong>Project</strong> &mdash; Developed a project applying DSA concepts practically</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
   <section id="skills">
     <div class="si">
-      <div class="sh reveal">
-        <div class="sn">03 &mdash; Skills</div>
-        <h2 class="stitle">Technical <em>Arsenal</em></h2>
+      <div class="sh sh-center reveal">
+        <div class="sn">Skills</div>
       </div>
       <table class="sktbl reveal">
         <tr>
@@ -241,9 +259,8 @@
   </section>
   <section id="certificates">
     <div class="si">
-      <div class="sh reveal">
-        <div class="sn">04 &mdash; Certificates</div>
-        <h2 class="stitle">Credentials &amp; <em>Licences</em></h2>
+      <div class="sh sh-center reveal">
+        <div class="sn">Certificates</div>
       </div>
       <div class="cgrid reveal">
         <div class="cc">
@@ -319,91 +336,22 @@ Introduction to Hardware and Operating Systems</div>
   </section>
   <section id="achievements">
     <div class="si">
-      <div class="sh reveal">
-        <div class="sn">05 &mdash; Achievements</div>
-        <h2 class="stitle">Key <em>Highlights</em></h2>
+      <div class="sh sh-center reveal">
+        <div class="sn">Achievements</div>
       </div>
-      <div class="achl">
-        <div class="achr reveal">
-          <div>
-            <div class="achico">&#9670;</div>
-            <div class="achidx">01</div>
-          </div>
-          <div>
-            <div class="acht">300+ Competitive Programming Problems</div>
-            <p class="achd">Consistent practitioner of algorithmic problem-solving with 300+ problems across LeetCode
-              and GeeksForGeeks, backed by a 4-star rating on HackerRank. Strong command of data structures, graph
-              algorithms, and dynamic programming applied across competitive programming contexts.</p>
-          </div>
-        </div>
-        <div class="achr reveal">
-          <div>
-            <div class="achico">&#9670;</div>
-            <div class="achidx">02</div>
-          </div>
-          <div>
-            <div class="acht">Vice-President, Changemakers of Amazon &mdash; LPU</div>
-            <p class="achd">Elected VP of LPU's foremost cloud technology community since October 2025. Leading
-              AWS-focused workshops, mentoring students in cloud fundamentals and DevOps, and organising
-              industry-aligned events that bridge academic learning with professional engineering standards.</p>
-          </div>
-        </div>
-        <div class="achr reveal">
-          <div>
-            <div class="achico">&#9670;</div>
-            <div class="achidx">03</div>
-          </div>
-          <div>
-            <div class="acht">Full Stack Web Development Expertise</div>
-            <p class="achd">Developed and deployed 15+ production-ready applications using MERN stack, Python Flask, and
-              cloud platforms. Experience with responsive design, API development, database management, and modern
-              deployment practices across diverse project scales.</p>
-          </div>
-        </div>
-        <div class="achr reveal">
-          <div>
-            <div class="achico">&#9670;</div>
-            <div class="achidx">04</div>
-          </div>
-          <div>
-            <div class="acht">Open Source Contributions</div>
-            <p class="achd">Active contributor to multiple GitHub repositories with 50+ merged pull requests.
-              Collaborated on documentation improvements, bug fixes, and feature enhancements across various technology
-              stacks and community projects.</p>
-          </div>
-        </div>
-        <div class="achr reveal">
-          <div>
-            <div class="achico">&#9670;</div>
-            <div class="achidx">05</div>
-          </div>
-          <div>
-            <div class="acht">Cloud Computing Certifications</div>
-            <p class="achd">Earned 6+ industry-recognized certifications in cloud technologies including AWS, Oracle
-              Cloud, and Azure fundamentals. Demonstrated practical knowledge through hands-on projects and real-world
-              cloud architecture implementations.</p>
-          </div>
-        </div>
-        <div class="achr reveal">
-          <div>
-            <div class="achico">&#9670;</div>
-            <div class="achidx">06</div>
-          </div>
-          <div>
-            <div class="acht">Technical Leadership & Mentoring</div>
-            <p class="achd">Mentored 25+ junior developers through coding bootcamps and peer programming sessions. Led
-              technical workshops on modern web development, cloud computing, and best practices for scalable software
-              engineering.</p>
-          </div>
-        </div>
-      </div>
+      <ul class="ach-list reveal">
+        <li><strong>Consistently</strong> solved 300+ DSA problems across LeetCode &amp; GeeksForGeeks, strengthening problem solving, logic building and algorithmic thinking over time.</li>
+        <li><strong>Elected</strong> as Vice President &mdash; Changemakers of Amazon Club, LPU &mdash; leading a team, driving initiatives and representing the club at an official Amazon-affiliated platform.</li>
+        <li><strong>Organised</strong> and delivered a hands-on GitHub Workshop for college students, covering version control, branching, pull requests and real-world collaboration workflows.</li>
+        <li><strong>Designed</strong> and hosted a Technical Quiz Competition for 50+ participants, managing questions, rounds, scoring and overall event execution end to end.</li>
+        <li><strong>Led</strong> club event coordination and team management as a Core Member &mdash; planning, delegating and executing multiple activities while maintaining team discipline and engagement.</li>
+      </ul>
     </div>
   </section>
   <section id="education">
     <div class="si">
       <div class="sh reveal">
-        <div class="sn">06 &mdash; Education</div>
-        <h2 class="stitle">Academic <em>Journey</em></h2>
+        <div class="sn">Education</div>
       </div>
       <div class="edl">
         <div class="edr reveal">
@@ -437,8 +385,7 @@ Introduction to Hardware and Operating Systems</div>
   <section id="profiles">
     <div class="si">
       <div class="sh reveal">
-        <div class="sn">07 &mdash; Live Stats</div>
-        <h2 class="stitle">Developer <em>Profiles</em></h2>
+        <div class="sn">Live Stats</div>
       </div>
       <div class="stats-grid reveal">
         <div class="scard" id="gh-card">
@@ -565,21 +512,19 @@ Introduction to Hardware and Operating Systems</div>
   </section>
   <section id="contact">
     <div class="si">
-      <div class="sh reveal">
-        <div class="sn">08 &mdash; Contact</div>
-        <h2 class="stitle">Let's <em>Connect</em></h2>
+      <div class="sh sh-center reveal">
+        <div class="sn">Contact</div>
       </div>
       <div class="cgrd">
         <div class="cl reveal">
-          <p>Whether you have a role, a project, or simply want to talk engineering &mdash; I am always open to the
-            right conversation.</p>
+          <p>Open to internship opportunities, collaborative projects and meaningful engineering conversations &mdash; if you think we can build something together, let's talk.</p>
           <div class="cir">
             <div class="cilbl">Email</div>
-            <div class="cival"><a href="mailto:dixitjiuday@gmail.com">dixitjiuday@gmail.com</a></div>
+            <div class="cival"><a href="https://mail.google.com/mail/?view=cm&to=dixitjiuday@gmail.com" target="_blank" rel="noopener noreferrer">dixitjiuday@gmail.com</a></div>
           </div>
           <div class="cir">
             <div class="cilbl">Phone</div>
-            <div class="cival"><a href="tel:+916260529908">+91 6260529908</a></div>
+            <div class="cival"><a href="tel:+916260529908" style="text-decoration:none;color:inherit;">&#128222; +91 6260529908</a></div>
           </div>
           <div class="cir">
             <div class="cilbl">Location</div>
@@ -588,7 +533,7 @@ Introduction to Hardware and Operating Systems</div>
           <div class="socrow">
             <a class="sbtn" href="https://linkedin.com/in/uday-dixit11" target="_blank">LinkedIn &#8599;</a>
             <a class="sbtn" href="https://github.com/uday2327" target="_blank">GitHub &#8599;</a>
-            <a class="sbtn" href="mailto:dixitjiuday@gmail.com">Email &#8599;</a>
+            <a class="sbtn" href="https://mail.google.com/mail/?view=cm&to=dixitjiuday@gmail.com" target="_blank" rel="noopener noreferrer">Email &#8599;</a>
           </div>
         </div>
         <div class="reveal">

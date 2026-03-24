@@ -96,15 +96,59 @@ function loadLeetCode(){
     });
 }
 loadGitHub();loadLeetCode();
-var EJS_SVC='YOUR_SERVICE_ID',EJS_TPL='YOUR_TEMPLATE_ID',EJS_KEY='YOUR_PUBLIC_KEY';
-var ejsScript=document.createElement('script');ejsScript.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';ejsScript.onload=function(){if(EJS_KEY!=='YOUR_PUBLIC_KEY')emailjs.init(EJS_KEY);};document.head.appendChild(ejsScript);
-document.getElementById('cf').addEventListener('submit',function(e){
+// Replace YOUR_SERVICE_ID with EmailJS Service ID
+// Replace YOUR_TEMPLATE_ID with EmailJS Template ID  
+// Replace YOUR_PUBLIC_KEY with EmailJS Public Key
+
+document.getElementById('cf').addEventListener('submit', function(e) {
   e.preventDefault();
-  var btn=document.getElementById('fb'),st=document.getElementById('fst');
-  var n=document.getElementById('fn').value.trim(),em=document.getElementById('fe').value.trim(),s=document.getElementById('fs').value.trim(),m=document.getElementById('fm').value.trim();
-  btn.textContent='Sending\u2026';btn.disabled=true;st.className='fstat';st.style.display='none';
-  if(EJS_SVC==='YOUR_SERVICE_ID'){window.location.href='mailto:dixitjiuday@gmail.com?subject='+encodeURIComponent(s||'Portfolio Contact')+'&body='+encodeURIComponent('Name: '+n+'\nEmail: '+em+'\n\n'+m);btn.textContent='Send Message \u2192';btn.disabled=false;return;}
-  emailjs.send(EJS_SVC,EJS_TPL,{from_name:n,from_email:em,subject:s||'Portfolio Contact',message:m,to_email:'dixitjiuday@gmail.com'}).then(function(){st.textContent='\u2713 Message sent \u2014 I\'ll reply shortly.';st.className='fstat ok';document.getElementById('cf').reset();}).catch(function(){st.textContent='\u2717 Failed. Email: dixitjiuday@gmail.com';st.className='fstat err';}).finally(function(){btn.textContent='Send Message \u2192';btn.disabled=false;});
+  
+  var name = document.getElementById('fn').value;
+  var email = document.getElementById('fe').value;
+  var subject = document.getElementById('fs').value;
+  var message = document.getElementById('fm').value;
+  var st = document.getElementById('fst');
+  var btn = document.getElementById('fb');
+  
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  st.style.display = 'block';
+  st.className = 'fstat';
+  st.textContent = 'Sending...';
+
+  if (!name || !email || !message) {
+      st.textContent = "Something went wrong. Please try again.";
+      st.className = "fstat err";
+      btn.textContent = 'Send Message \u2192';
+      btn.disabled = false;
+      return;
+  }
+
+  emailjs.send(
+    "service_6icd8qn",
+    "template_xitsl2v",
+    {
+      from_name: name,
+      from_email: email,
+      subject: subject,
+      message: message,
+    },
+    "v70whhCXeceKD1CFj"
+  )
+  .then(() => {
+    st.textContent = "Message Sent! I will get back to you soon.";
+    st.className = "fstat ok";
+    document.getElementById('cf').reset();
+  })
+  .catch((error) => {
+    st.textContent = "Something went wrong. Please try again.";
+    st.className = "fstat err";
+    console.log(error);
+  })
+  .finally(() => {
+    btn.textContent = 'Send Message \u2192';
+    btn.disabled = false;
+  });
 });
 // Certificate Lightbox Modal
 (function(){
